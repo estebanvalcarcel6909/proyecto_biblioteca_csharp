@@ -38,8 +38,7 @@ class Program
                     ShowLoansMenu();
                     break;
                 case 4:
-                    Console.WriteLine("Módulo de búsquedas y reportes pendiente de implementar.");
-                    Pause();
+                    ShowSearchReportsMenu();
                     break;
                 case 5:
                     Console.WriteLine("Módulo de guardar y cargar datos pendiente de implementar.");
@@ -476,6 +475,176 @@ class Program
         Console.WriteLine("- Verificar que el préstamo exista.");
         Console.WriteLine("- Validar que no tenga procesos pendientes.");
         Console.WriteLine("- Conservar el historial de préstamos cuando corresponda.");
+        Pause();
+    }
+
+    // MÓDULO DE BÚSQUEDAS Y REPORTES
+    static void ShowSearchReportsMenu()
+    {
+        bool volver = false;
+
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("===== BÚSQUEDAS Y REPORTES =====");
+            Console.WriteLine("4.1 Buscar libro");
+            Console.WriteLine("4.2 Buscar usuario");
+            Console.WriteLine("4.3 Reportes");
+            Console.WriteLine("0. Volver al menú principal");
+
+            int opcion = ReadOption("Seleccione una opción: ", 0, 3);
+
+            switch (opcion)
+            {
+                case 1:
+                    SearchBook();
+                    break;
+                case 2:
+                    SearchUser();
+                    break;
+                case 3:
+                    ReportsMenu();
+                    break;
+                case 0:
+                    volver = true;
+                    break;
+            }
+        }
+    }
+
+    static void SearchBook()
+    {
+        Console.Clear();
+        Console.WriteLine("===== BUSCAR LIBRO =====");
+        Console.WriteLine("Buscar por:");
+        Console.WriteLine("1. Título");
+        Console.WriteLine("2. Autor");
+        Console.WriteLine("3. ID o ISBN");
+        Console.WriteLine("4. Categoría");
+
+        int opcion = ReadOption("Seleccione el criterio de búsqueda: ", 1, 4);
+
+        Console.Write("Ingrese el dato que desea buscar: ");
+        string dato = Console.ReadLine() ?? "";
+
+        switch (opcion)
+        {
+            case 1:
+                Console.WriteLine("Búsqueda simulada de libros por título: " + dato);
+                break;
+            case 2:
+                Console.WriteLine("Búsqueda simulada de libros por autor: " + dato);
+                break;
+            case 3:
+                Console.WriteLine("Búsqueda simulada de libros por ID o ISBN: " + dato);
+                break;
+            case 4:
+                Console.WriteLine("Búsqueda simulada de libros por categoría: " + dato);
+                break;
+        }
+
+        Pause();
+    }
+
+    static void SearchUser()
+    {
+        Console.Clear();
+        Console.WriteLine("===== BUSCAR USUARIO =====");
+        Console.WriteLine("Buscar por:");
+        Console.WriteLine("1. Nombre");
+        Console.WriteLine("2. ID o documento");
+
+        int opcion = ReadOption("Seleccione el criterio de búsqueda: ", 1, 2);
+
+        Console.Write("Ingrese el dato que desea buscar: ");
+        string dato = Console.ReadLine() ?? "";
+
+        switch (opcion)
+        {
+            case 1:
+                Console.WriteLine("Búsqueda simulada de usuarios por nombre: " + dato);
+                break;
+            case 2:
+                Console.WriteLine("Búsqueda simulada de usuarios por ID o documento: " + dato);
+                break;
+        }
+
+        Pause();
+    }
+
+    static void ReportsMenu()
+    {
+        bool volver = false;
+
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("===== MENÚ DE REPORTES =====");
+            Console.WriteLine("1. Reporte por usuario");
+            Console.WriteLine("2. Reporte por libro");
+            Console.WriteLine("3. Reporte de préstamos vencidos");
+            Console.WriteLine("4. Resumen general");
+            Console.WriteLine("0. Volver");
+
+            int opcion = ReadOption("Seleccione una opción: ", 0, 4);
+
+            switch (opcion)
+            {
+                case 1:
+                    ReportByUser();
+                    break;
+                case 2:
+                    ReportByBook();
+                    break;
+                case 3:
+                    ReportOverdue();
+                    break;
+                case 4:
+                    ReportSummary();
+                    break;
+                case 0:
+                    volver = true;
+                    break;
+            }
+        }
+    }
+
+    static void ReportByUser()
+    {
+        Console.Write("Ingrese el ID o documento del usuario: ");
+        string identificador = Console.ReadLine() ?? "";
+
+        Console.WriteLine("Generando reporte simulado de préstamos por usuario.");
+        Console.WriteLine("Usuario consultado: " + identificador);
+        Pause();
+    }
+
+    static void ReportByBook()
+    {
+        Console.Write("Ingrese el ID o ISBN del libro: ");
+        string identificador = Console.ReadLine() ?? "";
+
+        Console.WriteLine("Generando reporte simulado de préstamos por libro.");
+        Console.WriteLine("Libro consultado: " + identificador);
+        Pause();
+    }
+
+    static void ReportOverdue()
+    {
+        Console.WriteLine("Generando reporte simulado de préstamos vencidos.");
+        Console.WriteLine("Se deben identificar los préstamos cuya fecha límite ya pasó.");
+        Pause();
+    }
+
+    static void ReportSummary()
+    {
+        Console.WriteLine("Generando resumen general de la biblioteca.");
+        Console.WriteLine("El resumen puede incluir:");
+        Console.WriteLine("- Total de libros registrados.");
+        Console.WriteLine("- Total de usuarios registrados.");
+        Console.WriteLine("- Total de préstamos.");
+        Console.WriteLine("- Préstamos activos y cerrados.");
+        Console.WriteLine("- Préstamos vencidos.");
         Pause();
     }
 
