@@ -791,29 +791,32 @@ class Program
 
     // CONFIRMACIÓN DE SALIDA
     static void ConfirmExitAndSave()
+{
+    string respuesta;
+
+    do
     {
-        string respuesta;
+        Console.Write("¿Desea guardar antes de salir? (S/N): ");
+        respuesta = Console.ReadLine()!.Trim().ToUpper();
 
-        do
+        if (respuesta != "S" && respuesta != "N")
         {
-            Console.Write("¿Desea guardar antes de salir? (S/N): ");
-            respuesta = (Console.ReadLine() ?? "").Trim().ToUpper();
-
-            if (respuesta != "S" && respuesta != "N")
-            {
-                Console.WriteLine("Respuesta no válida. Escriba S o N.");
-            }
-
-        } while (respuesta != "S" && respuesta != "N");
-
-        if (respuesta == "S")
-        {
-            SaveData();
+            Console.WriteLine("Opción no válida. Escriba S o N.");
         }
 
-        Console.WriteLine("Saliendo del sistema de gestión de biblioteca.");
-        Pause();
+    } while (respuesta != "S" && respuesta != "N");
+
+    if (respuesta == "S")
+    {
+        SaveData();
     }
+    else
+    {
+        Console.WriteLine("Ha decidido salir sin guardar los datos.");
+    }
+
+    Console.WriteLine("Saliendo del sistema de gestión de biblioteca.");
+}
 
     // VALIDACIÓN DE ENTRADAS
     static int ReadOption(string mensaje, int minimo, int maximo)
