@@ -16,13 +16,16 @@ class Program
         while (continuar)
         {
             Console.Clear();
-            Console.WriteLine("===== SISTEMA DE GESTIÓN DE BIBLIOTECA =====");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("       SISTEMA DE GESTIÓN DE BIBLIOTECA");
+            Console.WriteLine("==========================================");
             Console.WriteLine("1. Libros");
             Console.WriteLine("2. Usuarios");
             Console.WriteLine("3. Préstamos");
             Console.WriteLine("4. Búsquedas y reportes");
             Console.WriteLine("5. Guardar / Cargar datos");
             Console.WriteLine("6. Salir");
+            Console.WriteLine("==========================================");
 
             int opcion = ReadOption("Seleccione una opción: ", 1, 6);
 
@@ -31,21 +34,25 @@ class Program
                 case 1:
                     ShowBooksMenu();
                     break;
+
                 case 2:
                     ShowUsersMenu();
                     break;
+
                 case 3:
                     ShowLoansMenu();
                     break;
+
                 case 4:
                     ShowSearchReportsMenu();
                     break;
+
                 case 5:
-                    Console.WriteLine("Módulo de guardar y cargar datos pendiente de implementar.");
-                    Pause();
+                    ShowPersistenceMenu();
                     break;
+
                 case 6:
-                    Console.WriteLine("Ha seleccionado la opción Salir.");
+                    ConfirmExitAndSave();
                     continuar = false;
                     break;
             }
@@ -60,7 +67,9 @@ class Program
         while (!volver)
         {
             Console.Clear();
-            Console.WriteLine("===== MENÚ DE LIBROS =====");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("              MENÚ DE LIBROS");
+            Console.WriteLine("==========================================");
             Console.WriteLine("1.1 Registrar libro");
             Console.WriteLine("1.2 Listar libros");
             Console.WriteLine("1.3 Ver detalle de libro");
@@ -75,18 +84,23 @@ class Program
                 case 1:
                     RegisterBook();
                     break;
+
                 case 2:
                     ListBooksMenu();
                     break;
+
                 case 3:
                     ViewBookDetail();
                     break;
+
                 case 4:
                     UpdateBookMenu();
                     break;
+
                 case 5:
                     DeleteBook();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -120,12 +134,15 @@ class Program
                 case 1:
                     ListBooksAll();
                     break;
+
                 case 2:
                     ListBooksAvailable();
                     break;
+
                 case 3:
                     ListBooksBorrowed();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -181,12 +198,15 @@ class Program
                 case 1:
                     EditBookTitle();
                     break;
+
                 case 2:
                     EditBookAuthor();
                     break;
+
                 case 3:
                     EditBookYearCategory();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -227,7 +247,9 @@ class Program
         while (!volver)
         {
             Console.Clear();
-            Console.WriteLine("===== MENÚ DE USUARIOS =====");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("             MENÚ DE USUARIOS");
+            Console.WriteLine("==========================================");
             Console.WriteLine("2.1 Registrar usuario");
             Console.WriteLine("2.2 Listar usuarios");
             Console.WriteLine("2.3 Ver detalle de usuario");
@@ -242,18 +264,23 @@ class Program
                 case 1:
                     RegisterUser();
                     break;
+
                 case 2:
                     ListUsers();
                     break;
+
                 case 3:
                     ViewUserDetail();
                     break;
+
                 case 4:
                     UpdateUserMenu();
                     break;
+
                 case 5:
                     DeleteUser();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -303,12 +330,15 @@ class Program
                 case 1:
                     EditUserName();
                     break;
+
                 case 2:
                     EditUserContact();
                     break;
+
                 case 3:
                     ToggleUserActiveStatus();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -349,7 +379,9 @@ class Program
         while (!volver)
         {
             Console.Clear();
-            Console.WriteLine("===== MENÚ DE PRÉSTAMOS =====");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("             MENÚ DE PRÉSTAMOS");
+            Console.WriteLine("==========================================");
             Console.WriteLine("3.1 Crear préstamo");
             Console.WriteLine("3.2 Listar préstamos");
             Console.WriteLine("3.3 Ver detalle de préstamo");
@@ -364,18 +396,23 @@ class Program
                 case 1:
                     CreateLoan();
                     break;
+
                 case 2:
                     ListLoansMenu();
                     break;
+
                 case 3:
                     ViewLoanDetail();
                     break;
+
                 case 4:
                     RegisterReturn();
                     break;
+
                 case 5:
                     DeleteLoan();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -417,12 +454,15 @@ class Program
                 case 1:
                     ListLoansAll();
                     break;
+
                 case 2:
                     ListLoansActive();
                     break;
+
                 case 3:
                     ListLoansClosed();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -486,7 +526,9 @@ class Program
         while (!volver)
         {
             Console.Clear();
-            Console.WriteLine("===== BÚSQUEDAS Y REPORTES =====");
+            Console.WriteLine("==========================================");
+            Console.WriteLine("          BÚSQUEDAS Y REPORTES");
+            Console.WriteLine("==========================================");
             Console.WriteLine("4.1 Buscar libro");
             Console.WriteLine("4.2 Buscar usuario");
             Console.WriteLine("4.3 Reportes");
@@ -499,12 +541,15 @@ class Program
                 case 1:
                     SearchBook();
                     break;
+
                 case 2:
                     SearchUser();
                     break;
+
                 case 3:
                     ReportsMenu();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -532,12 +577,15 @@ class Program
             case 1:
                 Console.WriteLine("Búsqueda simulada de libros por título: " + dato);
                 break;
+
             case 2:
                 Console.WriteLine("Búsqueda simulada de libros por autor: " + dato);
                 break;
+
             case 3:
                 Console.WriteLine("Búsqueda simulada de libros por ID o ISBN: " + dato);
                 break;
+
             case 4:
                 Console.WriteLine("Búsqueda simulada de libros por categoría: " + dato);
                 break;
@@ -564,6 +612,7 @@ class Program
             case 1:
                 Console.WriteLine("Búsqueda simulada de usuarios por nombre: " + dato);
                 break;
+
             case 2:
                 Console.WriteLine("Búsqueda simulada de usuarios por ID o documento: " + dato);
                 break;
@@ -593,15 +642,19 @@ class Program
                 case 1:
                     ReportByUser();
                     break;
+
                 case 2:
                     ReportByBook();
                     break;
+
                 case 3:
                     ReportOverdue();
                     break;
+
                 case 4:
                     ReportSummary();
                     break;
+
                 case 0:
                     volver = true;
                     break;
@@ -648,6 +701,120 @@ class Program
         Pause();
     }
 
+    // MÓDULO DE GUARDAR / CARGAR DATOS
+    static void ShowPersistenceMenu()
+    {
+        bool volver = false;
+
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("===== GUARDAR / CARGAR DATOS =====");
+            Console.WriteLine("5.1 Guardar datos");
+            Console.WriteLine("5.2 Cargar datos");
+            Console.WriteLine("5.3 Reiniciar datos");
+            Console.WriteLine("0. Volver al menú principal");
+
+            int opcion = ReadOption("Seleccione una opción: ", 0, 3);
+
+            switch (opcion)
+            {
+                case 1:
+                    SaveData();
+                    break;
+
+                case 2:
+                    LoadData();
+                    break;
+
+                case 3:
+                    ConfirmResetData();
+                    break;
+
+                case 0:
+                    volver = true;
+                    break;
+            }
+        }
+    }
+
+    static void SaveData()
+    {
+        Console.WriteLine("Acción seleccionada: Guardar datos.");
+        Console.WriteLine("La operación de guardar datos se encuentra simulada.");
+        Console.WriteLine("En una implementación futura se almacenaría la información de la biblioteca.");
+        Pause();
+    }
+
+    static void LoadData()
+    {
+        Console.WriteLine("Acción seleccionada: Cargar datos.");
+        Console.WriteLine("La operación de cargar datos se encuentra simulada.");
+        Console.WriteLine("En una implementación futura se recuperaría la información almacenada.");
+        Pause();
+    }
+
+    static void ConfirmResetData()
+    {
+        string respuesta;
+
+        do
+        {
+            Console.Write("¿Está seguro de que desea reiniciar los datos? (S/N): ");
+            respuesta = (Console.ReadLine() ?? "").Trim().ToUpper();
+
+            if (respuesta != "S" && respuesta != "N")
+            {
+                Console.WriteLine("Respuesta no válida. Escriba S para confirmar o N para cancelar.");
+            }
+
+        } while (respuesta != "S" && respuesta != "N");
+
+        if (respuesta == "S")
+        {
+            ResetData();
+        }
+        else
+        {
+            Console.WriteLine("Operación cancelada. Los datos se mantienen.");
+        }
+
+        Pause();
+    }
+
+    static void ResetData()
+    {
+        Console.WriteLine("Acción seleccionada: Reiniciar datos.");
+        Console.WriteLine("La operación de reinicio se encuentra simulada.");
+        Console.WriteLine("No se han eliminado datos reales.");
+    }
+
+    // CONFIRMACIÓN DE SALIDA
+    static void ConfirmExitAndSave()
+    {
+        string respuesta;
+
+        do
+        {
+            Console.Write("¿Desea guardar antes de salir? (S/N): ");
+            respuesta = (Console.ReadLine() ?? "").Trim().ToUpper();
+
+            if (respuesta != "S" && respuesta != "N")
+            {
+                Console.WriteLine("Respuesta no válida. Escriba S o N.");
+            }
+
+        } while (respuesta != "S" && respuesta != "N");
+
+        if (respuesta == "S")
+        {
+            SaveData();
+        }
+
+        Console.WriteLine("Saliendo del sistema de gestión de biblioteca.");
+        Pause();
+    }
+
     // VALIDACIÓN DE ENTRADAS
     static int ReadOption(string mensaje, int minimo, int maximo)
     {
@@ -668,7 +835,7 @@ class Program
         }
     }
 
-    // PAUSA PARA LEER LOS MENSAJES
+    // PAUSA
     static void Pause()
     {
         Console.WriteLine();
