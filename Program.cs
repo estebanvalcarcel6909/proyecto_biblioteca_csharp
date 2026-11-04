@@ -3,9 +3,8 @@ using System;
 
 class Program
 {
-    static void Main(string[] args)
+    static void Main()
     {
-        Console.Title = "Sistema de Gestión de Biblioteca";
         ShowMainMenu();
     }
 
@@ -17,17 +16,13 @@ class Program
         while (continuar)
         {
             Console.Clear();
-
-            Console.WriteLine("==========================================");
-            Console.WriteLine("       SISTEMA DE GESTIÓN DE BIBLIOTECA");
-            Console.WriteLine("==========================================");
+            Console.WriteLine("===== SISTEMA DE GESTIÓN DE BIBLIOTECA =====");
             Console.WriteLine("1. Libros");
             Console.WriteLine("2. Usuarios");
             Console.WriteLine("3. Préstamos");
             Console.WriteLine("4. Búsquedas y reportes");
             Console.WriteLine("5. Guardar / Cargar datos");
             Console.WriteLine("6. Salir");
-            Console.WriteLine();
 
             int opcion = ReadOption("Seleccione una opción: ", 1, 6);
 
@@ -40,26 +35,26 @@ class Program
                     ShowUsersMenu();
                     break;
                 case 3:
-                    ShowLoansMenu();
+                    Console.WriteLine("Módulo de préstamos pendiente de implementar.");
+                    Pause();
                     break;
                 case 4:
-                    ShowSearchReportsMenu();
+                    Console.WriteLine("Módulo de búsquedas y reportes pendiente de implementar.");
+                    Pause();
                     break;
                 case 5:
-                    ShowPersistenceMenu();
+                    Console.WriteLine("Módulo de guardar y cargar datos pendiente de implementar.");
+                    Pause();
                     break;
                 case 6:
-                    continuar = false;
                     Console.WriteLine("Ha seleccionado la opción Salir.");
+                    continuar = false;
                     break;
             }
         }
-
-        Console.WriteLine();
-        Console.WriteLine("Gracias por utilizar el sistema de biblioteca.");
     }
 
-    // MENÚ DE LIBROS
+    // MÓDULO DE LIBROS
     static void ShowBooksMenu()
     {
         bool volver = false;
@@ -67,17 +62,13 @@ class Program
         while (!volver)
         {
             Console.Clear();
-
-            Console.WriteLine("==========================================");
-            Console.WriteLine("              MENÚ DE LIBROS");
-            Console.WriteLine("==========================================");
+            Console.WriteLine("===== MENÚ DE LIBROS =====");
             Console.WriteLine("1.1 Registrar libro");
             Console.WriteLine("1.2 Listar libros");
             Console.WriteLine("1.3 Ver detalle de libro");
             Console.WriteLine("1.4 Actualizar libro");
             Console.WriteLine("1.5 Eliminar libro");
             Console.WriteLine("0. Volver al menú principal");
-            Console.WriteLine();
 
             int opcion = ReadOption("Seleccione una opción: ", 0, 5);
 
@@ -105,18 +96,12 @@ class Program
         }
     }
 
-    // REGISTRAR LIBRO
     static void RegisterBook()
     {
-        Console.Clear();
-        Console.WriteLine("REGISTRAR LIBRO");
-        Console.WriteLine("------------------------------------------");
         Console.WriteLine("Acción seleccionada: Registrar un nuevo libro.");
-        Console.WriteLine("Se solicitarían los datos del libro para su registro.");
         Pause();
     }
 
-    // SUBMENÚ LISTAR LIBROS
     static void ListBooksMenu()
     {
         bool volver = false;
@@ -124,15 +109,11 @@ class Program
         while (!volver)
         {
             Console.Clear();
-
-            Console.WriteLine("==========================================");
-            Console.WriteLine("             LISTAR LIBROS");
-            Console.WriteLine("==========================================");
-            Console.WriteLine("1.2.1 Listar todos los libros");
-            Console.WriteLine("1.2.2 Listar libros disponibles");
-            Console.WriteLine("1.2.3 Listar libros prestados");
-            Console.WriteLine("0. Volver al menú de libros");
-            Console.WriteLine();
+            Console.WriteLine("===== LISTAR LIBROS =====");
+            Console.WriteLine("1. Listar todos los libros");
+            Console.WriteLine("2. Listar libros disponibles");
+            Console.WriteLine("3. Listar libros prestados");
+            Console.WriteLine("0. Volver");
 
             int opcion = ReadOption("Seleccione una opción: ", 0, 3);
 
@@ -156,46 +137,32 @@ class Program
 
     static void ListBooksAll()
     {
-        Console.WriteLine();
         Console.WriteLine("Acción seleccionada: Listar todos los libros.");
-        Console.WriteLine("Se mostraría el listado completo de libros registrados.");
         Pause();
     }
 
     static void ListBooksAvailable()
     {
-        Console.WriteLine();
         Console.WriteLine("Acción seleccionada: Listar libros disponibles.");
-        Console.WriteLine("Se mostrarían únicamente los libros disponibles.");
         Pause();
     }
 
     static void ListBooksBorrowed()
     {
-        Console.WriteLine();
         Console.WriteLine("Acción seleccionada: Listar libros prestados.");
-        Console.WriteLine("Se mostrarían únicamente los libros que están prestados.");
         Pause();
     }
 
-    // VER DETALLE DE LIBRO
     static void ViewBookDetail()
     {
-        Console.Clear();
-        Console.WriteLine("VER DETALLE DE LIBRO");
-        Console.WriteLine("------------------------------------------");
         Console.Write("Ingrese el ID o ISBN del libro: ");
-
         string identificador = Console.ReadLine() ?? "";
 
-        Console.WriteLine();
         Console.WriteLine("Acción seleccionada: Consultar el detalle del libro.");
         Console.WriteLine("Identificador ingresado: " + identificador);
-        Console.WriteLine("Se mostrarían los detalles del libro solicitado.");
         Pause();
     }
 
-    // SUBMENÚ ACTUALIZAR LIBRO
     static void UpdateBookMenu()
     {
         bool volver = false;
@@ -203,15 +170,11 @@ class Program
         while (!volver)
         {
             Console.Clear();
-
-            Console.WriteLine("==========================================");
-            Console.WriteLine("            ACTUALIZAR LIBRO");
-            Console.WriteLine("==========================================");
-            Console.WriteLine("1.4.1 Editar título");
-            Console.WriteLine("1.4.2 Editar autor");
-            Console.WriteLine("1.4.3 Editar año / categoría");
-            Console.WriteLine("0. Volver al menú de libros");
-            Console.WriteLine();
+            Console.WriteLine("===== ACTUALIZAR LIBRO =====");
+            Console.WriteLine("1. Editar título");
+            Console.WriteLine("2. Editar autor");
+            Console.WriteLine("3. Editar año / categoría");
+            Console.WriteLine("0. Volver");
 
             int opcion = ReadOption("Seleccione una opción: ", 0, 3);
 
@@ -235,71 +198,152 @@ class Program
 
     static void EditBookTitle()
     {
-        Console.WriteLine();
-        Console.WriteLine("Acción seleccionada: Editar el título del libro.");
-        Console.WriteLine("Se solicitaría el nuevo título para actualizarlo.");
+        Console.WriteLine("Acción seleccionada: Editar título del libro.");
         Pause();
     }
 
     static void EditBookAuthor()
     {
-        Console.WriteLine();
-        Console.WriteLine("Acción seleccionada: Editar el autor del libro.");
-        Console.WriteLine("Se solicitaría el nuevo autor para actualizarlo.");
+        Console.WriteLine("Acción seleccionada: Editar autor del libro.");
         Pause();
     }
 
     static void EditBookYearCategory()
     {
-        Console.WriteLine();
-        Console.WriteLine("Acción seleccionada: Editar año y categoría.");
-        Console.WriteLine("Se solicitarían los nuevos datos para actualizarlos.");
+        Console.WriteLine("Acción seleccionada: Editar año y categoría del libro.");
         Pause();
     }
 
-    // ELIMINAR LIBRO
     static void DeleteBook()
     {
-        Console.WriteLine();
         Console.WriteLine("Acción seleccionada: Eliminar libro.");
         Console.WriteLine("Validar no permitir si está prestado.");
         Pause();
     }
 
-    // MÓDULOS PENDIENTES
+    // MÓDULO DE USUARIOS
     static void ShowUsersMenu()
     {
-        Console.WriteLine();
-        Console.WriteLine("Módulo de usuarios seleccionado.");
-        Console.WriteLine("El submenú de usuarios se desarrollará posteriormente.");
-        Pause();
+        bool volver = false;
+
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("===== MENÚ DE USUARIOS =====");
+            Console.WriteLine("2.1 Registrar usuario");
+            Console.WriteLine("2.2 Listar usuarios");
+            Console.WriteLine("2.3 Ver detalle de usuario");
+            Console.WriteLine("2.4 Actualizar usuario");
+            Console.WriteLine("2.5 Eliminar usuario");
+            Console.WriteLine("0. Volver al menú principal");
+
+            int opcion = ReadOption("Seleccione una opción: ", 0, 5);
+
+            switch (opcion)
+            {
+                case 1:
+                    RegisterUser();
+                    break;
+                case 2:
+                    ListUsers();
+                    break;
+                case 3:
+                    ViewUserDetail();
+                    break;
+                case 4:
+                    UpdateUserMenu();
+                    break;
+                case 5:
+                    DeleteUser();
+                    break;
+                case 0:
+                    volver = true;
+                    break;
+            }
+        }
     }
 
-    static void ShowLoansMenu()
+    static void RegisterUser()
     {
-        Console.WriteLine();
-        Console.WriteLine("Módulo de préstamos seleccionado.");
-        Console.WriteLine("El submenú de préstamos se desarrollará posteriormente.");
+        Console.WriteLine("Acción seleccionada: Registrar un nuevo usuario.");
         Pause();
     }
 
-    static void ShowSearchReportsMenu()
+    static void ListUsers()
     {
-        Console.WriteLine();
-        Console.WriteLine("Módulo de búsquedas y reportes seleccionado.");
-        Console.WriteLine("Este módulo se desarrollará posteriormente.");
+        Console.WriteLine("Acción seleccionada: Listar todos los usuarios registrados.");
         Pause();
     }
 
-    static void ShowPersistenceMenu()
+    static void ViewUserDetail()
     {
-        Console.WriteLine();
-        Console.WriteLine("Módulo de guardar y cargar datos seleccionado.");
-        Console.WriteLine("Este módulo se desarrollará posteriormente.");
+        Console.Write("Ingrese el ID o documento del usuario: ");
+        string identificador = Console.ReadLine() ?? "";
+
+        Console.WriteLine("Acción seleccionada: Consultar el detalle del usuario.");
+        Console.WriteLine("Identificador ingresado: " + identificador);
         Pause();
     }
 
-    // VALIDAR ENTRADAS NUMÉRICAS
+    static void UpdateUserMenu()
+    {
+        bool volver = false;
+
+        while (!volver)
+        {
+            Console.Clear();
+            Console.WriteLine("===== ACTUALIZAR USUARIO =====");
+            Console.WriteLine("1. Editar nombre");
+            Console.WriteLine("2. Editar contacto");
+            Console.WriteLine("3. Activar / desactivar usuario");
+            Console.WriteLine("0. Volver");
+
+            int opcion = ReadOption("Seleccione una opción: ", 0, 3);
+
+            switch (opcion)
+            {
+                case 1:
+                    EditUserName();
+                    break;
+                case 2:
+                    EditUserContact();
+                    break;
+                case 3:
+                    ToggleUserActiveStatus();
+                    break;
+                case 0:
+                    volver = true;
+                    break;
+            }
+        }
+    }
+
+    static void EditUserName()
+    {
+        Console.WriteLine("Acción seleccionada: Editar el nombre del usuario.");
+        Pause();
+    }
+
+    static void EditUserContact()
+    {
+        Console.WriteLine("Acción seleccionada: Editar los datos de contacto del usuario.");
+        Pause();
+    }
+
+    static void ToggleUserActiveStatus()
+    {
+        Console.WriteLine("Acción seleccionada: Activar o desactivar el usuario.");
+        Pause();
+    }
+
+    static void DeleteUser()
+    {
+        Console.WriteLine("Acción seleccionada: Eliminar usuario.");
+        Console.WriteLine("Validar no permitir si tiene préstamos activos.");
+        Pause();
+    }
+
+    // VALIDACIÓN DE ENTRADAS
     static int ReadOption(string mensaje, int minimo, int maximo)
     {
         int opcion;
@@ -315,12 +359,11 @@ class Program
                 return opcion;
             }
 
-            Console.WriteLine("Opción no válida. Intente nuevamente.");
-            Console.WriteLine();
+            Console.WriteLine("Entrada no válida. Intente nuevamente.");
         }
     }
 
-    // PAUSA
+    // PAUSA PARA LEER LOS MENSAJES
     static void Pause()
     {
         Console.WriteLine();
