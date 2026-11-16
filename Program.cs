@@ -1,5 +1,5 @@
-﻿
-using System;
+﻿using System;
+using system_books.Models;
 
 class Program
 {
@@ -25,9 +25,10 @@ class Program
             Console.WriteLine("4. Búsquedas y reportes");
             Console.WriteLine("5. Guardar / Cargar datos");
             Console.WriteLine("6. Salir");
+            Console.WriteLine("7. Pruebas de modelos");
             Console.WriteLine("==========================================");
 
-            int opcion = ReadOption("Seleccione una opción: ", 1, 6);
+            int opcion = ReadOption("Seleccione una opción: ", 1, 7);
 
             switch (opcion)
             {
@@ -54,6 +55,10 @@ class Program
                 case 6:
                     ConfirmExitAndSave();
                     continuar = false;
+                    break;
+
+                case 7:
+                    ProbarModelos();
                     break;
             }
         }
@@ -787,6 +792,98 @@ class Program
         Console.WriteLine("Acción seleccionada: Reiniciar datos.");
         Console.WriteLine("La operación de reinicio se encuentra simulada.");
         Console.WriteLine("No se han eliminado datos reales.");
+    }
+
+
+    // PRUEBAS DE LOS MODELOS (EV07)
+    static void ProbarModelos()
+    {
+        Console.Clear();
+        Console.WriteLine("==========================================");
+        Console.WriteLine("          PRUEBAS DE MODELOS EV07");
+        Console.WriteLine("==========================================");
+
+        // Crear dos libros
+        Libro libro1 = new Libro(
+            1,
+            "Cien años de soledad",
+            "Gabriel García Márquez",
+            "978-0307474728",
+            1967
+        );
+
+        Libro libro2 = new Libro(
+            2,
+            "El principito",
+            "Antoine de Saint-Exupéry",
+            "978-0156012195",
+            1943
+        );
+
+        libro2.Disponible = false;
+
+        // Crear dos usuarios
+        Usuario usuario1 = new Usuario(
+            1,
+            "Ana",
+            "Gómez",
+            "ana@gmail.com",
+            "3001234567"
+        );
+
+        Usuario usuario2 = new Usuario(
+            2,
+            "Carlos",
+            "Pérez",
+            "carlos@gmail.com",
+            "3107654321"
+        );
+
+        usuario2.Activo = false;
+
+        // Crear un préstamo con fecha de vencimiento pasada
+        Prestamo prestamo1 = new Prestamo(
+            1,
+            libro1,
+            usuario1,
+            DateTime.Now.AddDays(-20),
+            DateTime.Now.AddDays(-5)
+        );
+
+        Console.WriteLine();
+        Console.WriteLine("========== LIBROS ==========");
+        Console.WriteLine("Resumen libro 1: " + libro1.ResumenCorto());
+        Console.WriteLine(libro1.DetalleCompleto());
+        Console.WriteLine();
+        Console.WriteLine("Resumen libro 2: " + libro2.ResumenCorto());
+        Console.WriteLine(libro2.DetalleCompleto());
+
+        Console.WriteLine();
+        Console.WriteLine("========== USUARIOS ==========");
+        Console.WriteLine("Resumen usuario 1: " + usuario1.ResumenCorto());
+        Console.WriteLine(usuario1.DetalleCompleto());
+        Console.WriteLine();
+        Console.WriteLine("Resumen usuario 2: " + usuario2.ResumenCorto());
+        Console.WriteLine(usuario2.DetalleCompleto());
+
+        Console.WriteLine();
+        Console.WriteLine("========== PRÉSTAMO ==========");
+        Console.WriteLine("Resumen: " + prestamo1.ResumenCorto());
+        Console.WriteLine(prestamo1.DetalleCompleto());
+
+        Console.WriteLine();
+        Console.WriteLine("========== VALIDACIONES ==========");
+        Console.WriteLine($"Libro 1 disponible: {(libro1.Disponible ? "Sí" : "No")}");
+        Console.WriteLine($"Libro 2 disponible: {(libro2.Disponible ? "Sí" : "No")}");
+        Console.WriteLine($"Usuario 1 activo: {(usuario1.Activo ? "Sí" : "No")}");
+        Console.WriteLine($"Usuario 2 activo: {(usuario2.Activo ? "Sí" : "No")}");
+        Console.WriteLine($"Estado del préstamo: {prestamo1.Estado}");
+        Console.WriteLine($"¿El préstamo está vencido?: {(prestamo1.EstaVencido() ? "Sí" : "No")}");
+        Console.WriteLine($"Días transcurridos: {prestamo1.DiasTranscurridos()}");
+
+        Console.WriteLine();
+        Console.WriteLine("Pruebas de los modelos finalizadas.");
+        Pause();
     }
 
     // CONFIRMACIÓN DE SALIDA
