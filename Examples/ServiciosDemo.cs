@@ -56,14 +56,23 @@ namespace system_books.Examples
 
             Console.WriteLine("\nLibros ordenados por año de publicación:");
             foreach (Libro libro in libroService.OrdenarPorAnio())
-            {
                 Console.WriteLine($"{libro.AnioPublicacion} - {libro.Titulo}");
-            }
 
             Console.WriteLine("\nIndicadores de libros:");
             Console.WriteLine($"Total: {libroService.ObtenerTotalLibros()}");
             Console.WriteLine($"Disponibles: {libroService.ObtenerLibrosDisponibles()}");
             Console.WriteLine($"Prestados: {libroService.ObtenerLibrosPrestados()}");
+
+            // Prueba de eliminación de libro
+            Console.WriteLine("\nEliminar libro ISBN002:");
+            bool libroEliminado = libroService.EliminarLibro("ISBN002");
+            Console.WriteLine(libroEliminado
+                ? "Libro eliminado correctamente."
+                : "No se encontró el libro.");
+
+            Console.WriteLine("\nLibros restantes:");
+            foreach (Libro libro in libroService.ObtenerTodos())
+                Console.WriteLine(libro.ResumenCorto());
 
             // 2. USUARIOS
             UsuarioService usuarioService = new UsuarioService();
@@ -101,6 +110,17 @@ namespace system_books.Examples
             Console.WriteLine($"Total: {usuarioService.ObtenerTotalUsuarios()}");
             Console.WriteLine($"Activos: {usuarioService.ObtenerUsuariosActivos()}");
             Console.WriteLine($"Inactivos: {usuarioService.ObtenerUsuariosInactivos()}");
+
+            // Prueba de eliminación de usuario
+            Console.WriteLine("\nEliminar usuario ID 3:");
+            bool usuarioEliminado = usuarioService.EliminarUsuario(3);
+            Console.WriteLine(usuarioEliminado
+                ? "Usuario eliminado correctamente."
+                : "No se encontró el usuario.");
+
+            Console.WriteLine("\nUsuarios restantes:");
+            foreach (Usuario usuario in usuarioService.ObtenerTodos())
+                Console.WriteLine(usuario.ResumenCorto());
 
             // 3. PRÉSTAMOS
             PrestamoService prestamoService = new PrestamoService();
@@ -147,6 +167,17 @@ namespace system_books.Examples
             Console.WriteLine($"Vencidos: {prestamoService.ObtenerPrestamosVencidos()}");
             Console.WriteLine($"Devueltos: {prestamoService.ObtenerPrestamosDevueltos()}");
             Console.WriteLine($"Promedio de días: {prestamoService.ObtenerPromedioDiasPrestamo()}");
+
+            // Prueba de eliminación de préstamo
+            Console.WriteLine("\nEliminar préstamo ID 3:");
+            bool prestamoEliminado = prestamoService.EliminarPrestamo(3);
+            Console.WriteLine(prestamoEliminado
+                ? "Préstamo eliminado correctamente."
+                : "No se encontró el préstamo.");
+
+            Console.WriteLine("\nPréstamos restantes:");
+            foreach (Prestamo prestamo in prestamoService.ObtenerTodos())
+                Console.WriteLine(prestamo.ResumenCorto());
 
             Console.WriteLine("\n====================================");
             Console.WriteLine(" FIN DE LAS PRUEBAS DE SERVICIOS");
