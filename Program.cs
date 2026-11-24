@@ -1,5 +1,6 @@
 ﻿using System;
 using system_books.Models;
+using system_books.Examples;
 
 class Program
 {
@@ -26,9 +27,10 @@ class Program
             Console.WriteLine("5. Guardar / Cargar datos");
             Console.WriteLine("6. Salir");
             Console.WriteLine("7. Pruebas de modelos");
+            Console.WriteLine("8. Pruebas de servicios (EV08)");
             Console.WriteLine("==========================================");
 
-            int opcion = ReadOption("Seleccione una opción: ", 1, 7);
+            int opcion = ReadOption("Seleccione una opción: ", 1, 8);
 
             switch (opcion)
             {
@@ -59,6 +61,11 @@ class Program
 
                 case 7:
                     ProbarModelos();
+                    break;
+
+                case 8:
+                    ServiciosDemo.MostrarDemostracion();
+                    Pause();
                     break;
             }
         }
