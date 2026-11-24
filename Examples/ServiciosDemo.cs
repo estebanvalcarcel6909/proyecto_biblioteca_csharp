@@ -13,12 +13,7 @@ namespace system_books.Examples
             Console.WriteLine(" PRUEBAS DE LOS SERVICIOS");
             Console.WriteLine("====================================");
 
-            // ====================================
-            // 1. SERVICIO DE LIBROS
-            // ====================================
-
-            Console.WriteLine("\n========== SERVICIO DE LIBROS ==========");
-
+            // 1. LIBROS
             LibroService libroService = new LibroService();
 
             Libro libro1 = new Libro(
@@ -40,31 +35,29 @@ namespace system_books.Examples
             libroService.AgregarLibro(libro3);
 
             Console.WriteLine("\nTodos los libros:");
-
             foreach (Libro libro in libroService.ObtenerTodos())
-            {
                 Console.WriteLine(libro.ResumenCorto());
-            }
 
             Console.WriteLine("\nBuscar libro por ISBN001:");
-
             Libro? libroEncontrado = libroService.BuscarPorISBN("ISBN001");
-
-            Console.WriteLine(libroEncontrado?.ResumenCorto()
-                ?? "Libro no encontrado.");
+            Console.WriteLine(libroEncontrado?.ResumenCorto() ?? "Libro no encontrado.");
 
             Console.WriteLine("\nBuscar libros por título 'principito':");
-
             foreach (Libro libro in libroService.BuscarPorTitulo("principito"))
-            {
                 Console.WriteLine(libro.ResumenCorto());
-            }
+
+            Console.WriteLine("\nBuscar libros por autor 'Cervantes':");
+            foreach (Libro libro in libroService.BuscarPorAutor("Cervantes"))
+                Console.WriteLine(libro.ResumenCorto());
 
             Console.WriteLine("\nLibros ordenados por título:");
-
             foreach (Libro libro in libroService.OrdenarPorTitulo())
-            {
                 Console.WriteLine(libro.Titulo);
+
+            Console.WriteLine("\nLibros ordenados por año de publicación:");
+            foreach (Libro libro in libroService.OrdenarPorAnio())
+            {
+                Console.WriteLine($"{libro.AnioPublicacion} - {libro.Titulo}");
             }
 
             Console.WriteLine("\nIndicadores de libros:");
@@ -72,24 +65,14 @@ namespace system_books.Examples
             Console.WriteLine($"Disponibles: {libroService.ObtenerLibrosDisponibles()}");
             Console.WriteLine($"Prestados: {libroService.ObtenerLibrosPrestados()}");
 
-            // ====================================
-            // 2. SERVICIO DE USUARIOS
-            // ====================================
-
-            Console.WriteLine("\n========== SERVICIO DE USUARIOS ==========");
-
+            // 2. USUARIOS
             UsuarioService usuarioService = new UsuarioService();
 
-            Usuario usuario1 = new Usuario(
-                1, "Carlos", "Pérez",
+            Usuario usuario1 = new Usuario(1, "Carlos", "Pérez",
                 "carlos@gmail.com", "3001111111");
-
-            Usuario usuario2 = new Usuario(
-                2, "Ana", "Gómez",
+            Usuario usuario2 = new Usuario(2, "Ana", "Gómez",
                 "ana@gmail.com", "3002222222");
-
-            Usuario usuario3 = new Usuario(
-                3, "Luis", "Rodríguez",
+            Usuario usuario3 = new Usuario(3, "Luis", "Rodríguez",
                 "luis@gmail.com", "3003333333");
 
             usuario3.Activo = false;
@@ -99,65 +82,42 @@ namespace system_books.Examples
             usuarioService.AgregarUsuario(usuario3);
 
             Console.WriteLine("\nTodos los usuarios:");
-
             foreach (Usuario usuario in usuarioService.ObtenerTodos())
-            {
                 Console.WriteLine(usuario.ResumenCorto());
-            }
 
             Console.WriteLine("\nBuscar usuario por ID 1:");
-
             Usuario? usuarioEncontrado = usuarioService.BuscarPorId(1);
-
-            Console.WriteLine(usuarioEncontrado?.ResumenCorto()
-                ?? "Usuario no encontrado.");
+            Console.WriteLine(usuarioEncontrado?.ResumenCorto() ?? "Usuario no encontrado.");
 
             Console.WriteLine("\nBuscar usuarios por nombre 'Ana':");
-
             foreach (Usuario usuario in usuarioService.BuscarPorNombre("Ana"))
-            {
                 Console.WriteLine(usuario.ResumenCorto());
-            }
 
             Console.WriteLine("\nUsuarios ordenados por nombre:");
-
             foreach (Usuario usuario in usuarioService.OrdenarPorNombre())
-            {
                 Console.WriteLine(usuario.ResumenCorto());
-            }
 
             Console.WriteLine("\nIndicadores de usuarios:");
             Console.WriteLine($"Total: {usuarioService.ObtenerTotalUsuarios()}");
             Console.WriteLine($"Activos: {usuarioService.ObtenerUsuariosActivos()}");
             Console.WriteLine($"Inactivos: {usuarioService.ObtenerUsuariosInactivos()}");
 
-            // ====================================
-            // 3. SERVICIO DE PRÉSTAMOS
-            // ====================================
-
-            Console.WriteLine("\n========== SERVICIO DE PRÉSTAMOS ==========");
-
+            // 3. PRÉSTAMOS
             PrestamoService prestamoService = new PrestamoService();
 
             Prestamo prestamo1 = new Prestamo(
-                1, libro1, usuario1,
-                DateTime.Now.AddDays(-3),
+                1, libro1, usuario1, DateTime.Now.AddDays(-3),
                 DateTime.Now.AddDays(7));
-
             prestamo1.Estado = EstadoPrestamo.Activo;
 
             Prestamo prestamo2 = new Prestamo(
-                2, libro2, usuario2,
-                DateTime.Now.AddDays(-15),
+                2, libro2, usuario2, DateTime.Now.AddDays(-15),
                 DateTime.Now.AddDays(-5));
-
             prestamo2.Estado = EstadoPrestamo.Vencido;
 
             Prestamo prestamo3 = new Prestamo(
-                3, libro3, usuario3,
-                DateTime.Now.AddDays(-10),
+                3, libro3, usuario3, DateTime.Now.AddDays(-10),
                 DateTime.Now.AddDays(-3));
-
             prestamo3.Estado = EstadoPrestamo.Devuelto;
             prestamo3.FechaDevolucion = DateTime.Now.AddDays(-2);
 
@@ -166,32 +126,20 @@ namespace system_books.Examples
             prestamoService.AgregarPrestamo(prestamo3);
 
             Console.WriteLine("\nTodos los préstamos:");
-
             foreach (Prestamo prestamo in prestamoService.ObtenerTodos())
-            {
                 Console.WriteLine(prestamo.ResumenCorto());
-            }
 
             Console.WriteLine("\nBuscar préstamo por ID 1:");
-
             Prestamo? prestamoEncontrado = prestamoService.BuscarPorId(1);
-
-            Console.WriteLine(prestamoEncontrado?.ResumenCorto()
-                ?? "Préstamo no encontrado.");
+            Console.WriteLine(prestamoEncontrado?.ResumenCorto() ?? "Préstamo no encontrado.");
 
             Console.WriteLine("\nBuscar préstamos vencidos:");
-
             foreach (Prestamo prestamo in prestamoService.BuscarVencidos())
-            {
                 Console.WriteLine(prestamo.ResumenCorto());
-            }
 
             Console.WriteLine("\nPréstamos ordenados por fecha de vencimiento:");
-
             foreach (Prestamo prestamo in prestamoService.OrdenarPorFechaVencimiento())
-            {
                 Console.WriteLine(prestamo.ResumenCorto());
-            }
 
             Console.WriteLine("\nIndicadores de préstamos:");
             Console.WriteLine($"Total: {prestamoService.ObtenerTotalPrestamos()}");

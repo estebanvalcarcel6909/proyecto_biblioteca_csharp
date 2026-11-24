@@ -63,6 +63,12 @@ namespace system_books.Services
             return libros.OrderBy(libro => libro.Titulo).ToList();
         }
 
+        // Ordenar libros por año de publicación
+        public List<Libro> OrdenarPorAnio()
+        {
+            return libros.OrderBy(libro => libro.AnioPublicacion).ToList();
+        }
+
         // KPI: cantidad total de libros
         public int ObtenerTotalLibros()
         {
