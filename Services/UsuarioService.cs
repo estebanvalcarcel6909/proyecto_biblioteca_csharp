@@ -78,5 +78,23 @@ namespace system_books.Services
                 .ThenBy(usuario => usuario.Apellido)
                 .ToList();
         }
+
+        // KPI: cantidad total de usuarios
+        public int ObtenerTotalUsuarios()
+        {
+            return usuarios.Count;
+        }
+
+        // KPI: cantidad de usuarios activos
+        public int ObtenerUsuariosActivos()
+        {
+            return usuarios.Count(usuario => usuario.Activo);
+        }
+
+        // KPI: cantidad de usuarios inactivos
+        public int ObtenerUsuariosInactivos()
+        {
+            return usuarios.Count(usuario => !usuario.Activo);
+        }
     }
 }

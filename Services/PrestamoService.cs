@@ -64,5 +64,53 @@ namespace system_books.Services
                 .OrderBy(prestamo => prestamo.FechaVencimiento)
                 .ToList();
         }
+
+        // KPI: cantidad total de préstamos
+        public int ObtenerTotalPrestamos()
+        {
+            return prestamos.Count;
+        }
+
+        // KPI: cantidad de préstamos activos
+        public int ObtenerPrestamosActivos()
+        {
+            return prestamos.Count(prestamo =>
+                prestamo.Estado == EstadoPrestamo.Activo);
+        }
+
+        // KPI: cantidad de préstamos vencidos
+        public int ObtenerPrestamosVencidos()
+        {
+            return prestamos.Count(prestamo =>
+                prestamo.Estado == EstadoPrestamo.Vencido ||
+                prestamo.EstaVencido());
+        }
+
+        // KPI: cantidad de préstamos devueltos
+        public int ObtenerPrestamosDevueltos()
+        {
+            return prestamos.Count(prestamo =>
+                prestamo.Estado == EstadoPrestamo.Devuelto);
+        }
+
+        // KPI: promedio de días de préstamo
+        public double ObtenerPromedioDiasPrestamo()
+        {
+            if (prestamos.Count == 0)
+            {
+                return 0;
+            }
+
+            double totalDias = prestamos.Average(prestamo =>
+            {
+                DateTime fechaFinal =
+                    prestamo.FechaDevolucion ?? DateTime.Now;
+
+                return (fechaFinal.Date -
+                        prestamo.FechaPrestamo.Date).TotalDays;
+            });
+
+            return Math.Round(totalDias, 2);
+        }
     }
 }

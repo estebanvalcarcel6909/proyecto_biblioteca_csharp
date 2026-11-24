@@ -62,5 +62,23 @@ namespace system_books.Services
         {
             return libros.OrderBy(libro => libro.Titulo).ToList();
         }
+
+        // KPI: cantidad total de libros
+        public int ObtenerTotalLibros()
+        {
+            return libros.Count;
+        }
+
+        // KPI: cantidad de libros disponibles
+        public int ObtenerLibrosDisponibles()
+        {
+            return libros.Count(libro => libro.Disponible);
+        }
+
+        // KPI: cantidad de libros prestados
+        public int ObtenerLibrosPrestados()
+        {
+            return libros.Count(libro => !libro.Disponible);
+        }
     }
 }
